@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Input Form</title>
+    <style>
+       body {         
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("{{ url_for('static', filename='bg1.jpg') }}" );    
+     background-size: cover;
+    /* background-position: center; 
+    background-repeat:no-repeat; */
+    /* background-color: #f0f0f0;  Centers the image */
+}
+
+        .form-container {
+            /* background: transparent; */
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(27, 23, 23, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 20px;
+            max-height:90vh;
+            overflow-y:  auto, transparent;
+            box-sizing: border-box;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: whitesmoke;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button.submit {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        button.submit:hover {
+            background-color: #0056b3;
+        }
+
+        button.reset {
+            background-color: #f44336;
+            color: #ffffff;
+        }
+
+        button.reset:hover {
+            background-color: #d32f2f;
+        }
+
+        /* #result {
+            margin-top: 20px;
+            text-align: center;
+            color:#ffffff;
+            font-weight:bold;
+            font-size: large;
+        }
+
+        #result.success {
+            color: white;
+
+        } */
+        #result {
+            color:#ffffff;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px; /* Adds spacing inside the box */
+    border-radius: 5px; /* Rounds the corners */
+}
+
+#result.success {
+    background-color: #28a745 !important; /* Green background */
+    color: #ffffff !important; /* White text */
+    background-image: none !important; /* Ensures no inherited background */
+    padding: 10px; /* Adds spacing inside the box */
+    border-radius: 5px; /* Rounds the corners */
+    display: inline-block;
+}
+
+        #result.error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Date Fruit Classification</h2>
+        <form id="feature-form">
+            <!-- Repeat form-group for each feature -->
+            <!-- [Same feature input fields as before] -->
+            <!-- Add other input fields here -->
+      
+                <!-- Repeat form-group for each feature -->
+                <div class="form-group">
+                    <label for="AREA">AREA (int):</label>
+                    <input type="number" id="AREA" name="AREA" required>
+                </div>
+                <div class="form-group">
+                    <label for="ECCENTRICITY">ECCENTRICITY (float):</label>
+                    <input type="number" id="ECCENTRICITY" name="ECCENTRICITY" step="any" required>
+                </div>
+                <div class="form-group">
+                    <label for="SOLIDITY">SOLIDITY (float):</label>
+                    <input type="number" id="SOLIDITY" name="SOLIDITY" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="EXTENT">EXTENT (float):</label>
+                    <input type="number" id="EXTENT" name="EXTENT" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="ASPECT_RATIO">ASPECT_RATIO (float):</label>
+                    <input type="number" id="ASPECT_RATIO" name="ASPECT_RATIO" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="ROUNDNESS">ROUNDNESS (float):</label>
+                    <input type="number" id="ROUNDNESS" name="ROUNDNESS" step="0.0000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="SHAPEFACTOR_4">SHAPEFACTOR_4 (float):</label>
+                    <input type="number" id="SHAPEFACTOR_4" name="SHAPEFACTOR_4" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="MeanRR">MeanRR (float):</label>
+                    <input type="number" id="MeanRR" name="MeanRR" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="StdDevRR">StdDevRR (float):</label>
+                    <input type="number" id="StdDevRR" name="StdDevRR" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="StdDevRG">StdDevRG (float):</label>
+                    <input type="number" id="StdDevRG" name="StdDevRG" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="StdDevRB">StdDevRB (float):</label>
+                    <input type="number" id="StdDevRB" name="StdDevRB" step="0.0000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="SkewRR">SkewRR (float):</label>
+                    <input type="number" id="SkewRR" name="SkewRR" step="0.0000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="SkewRB">SkewRB (float):</label>
+                    <input type="number" id="SkewRB" name="SkewRB" step="0.0000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="KurtosisRR">KurtosisRR (float):</label>
+                    <input type="number" id="KurtosisRR" name="KurtosisRR" step="0.0000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="KurtosisRG">KurtosisRG (float):</label>
+                    <input type="number" id="KurtosisRG" name="KurtosisRG" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="KurtosisRB">KurtosisRB (float):</label>
+                    <input type="number" id="KurtosisRB" name="KurtosisRB" step="0.000000001" required>
+                </div>
+                <div class="form-group">
+                    <label for="EntropyRR">EntropyRR (int):</label>
+                    <input type="number" id="EntropyRR" name="EntropyRR" required>
+                </div>
+    
+    
+            <div class="form-buttons">
+                <button type="submit" class="submit">Classify</button>
+                <button type="reset" class="reset">Reset</button>
+            </div>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('feature-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = parseFloat(value);
+            });
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+                // Populate input fields with the entered values
+                Object.keys(result.entered_values).forEach((key) => {
+                document.getElementById(key).value = result.entered_values[key];
+                });
+
+                document.getElementById('result').innerHTML = `
+                    <p class="success">ClASS:  ${result.prediction}
+                        <br></br>
+                    </p>
+                `;
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <p class="error">Error: ${error.message}</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
